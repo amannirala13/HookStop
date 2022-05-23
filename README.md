@@ -49,3 +49,22 @@ This project has the following milestones:
 - NavController
 - State Management
 - Animation
+
+---
+<p align="center">
+<a href="https://github.com/amannirala13?tab=followers"><img alt = "github_follow_badge" src="https://img.shields.io/github/followers/amannirala13?label=Follow&style=social"/></a>
+<a href = "https://twitter.com/AmanNirala13"><img alt="twitter-badge" src="https://img.shields.io/twitter/follow/amannirala13?label=Follow%20us&style=social"/></a>
+</p>
+
+<p align="center">
+<a href="https://www.facebook.com/amannirala13"><img src="https://img.shields.io/badge/Follow-Facebook-RoyalBlue"/></a>
+<a href="https://www.linkedin.com/in/amannirala13"><img src="https://img.shields.io/badge/Follow-LinkedIn-Blue"/></a>
+<a href="https://www.researchgate.net/profile/Aman_Nirala"><img src="https://img.shields.io/badge/Follow-Research Gate-DeepSkyBlue"/></a>
+
+</p>
+
+If you like our work, a bit of contribution would motivate us a lot for more open source contributions.
+
+<p align="center">
+<a href="https://www.paypal.me/amannirala13"><img src="https://img.shields.io/badge/Donate-Paypal-blue?style=for-the-badge"></a>
+</p>
