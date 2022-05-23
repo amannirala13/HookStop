@@ -1,5 +1,6 @@
 # HookStop 
-<p class="has-line-data" data-line-start="0" data-line-end="15">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀<br>
+<p class="has-line-data" data-line-start="0" data-line-end="15">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                     ⣀⣀⡀⠀⠀⠀⠀<br>
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡿⠀⠀⠀⠀<br>
 ⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣦⣤⣿⣿⣧⣤⣾⠂⠀<br>
 ⠸⠿⠿⠿⠿⠿⠿⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢰⡆⠀⠀⠀⠀⠀<br>
@@ -16,6 +17,14 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠁⠀⠀⠀</p>
 
 A sample hookah renting application created in Jetpack Compose.
+---
+<p align="center">
+<a href="https://github.com/amannirala13/HookStop/issues"><img src="https://img.shields.io/github/issues/amannirala13/HookStop"></a>
+<a href="https://github.com/amannirala13/HookStop/pulls"><img src="https://img.shields.io/github/issues-pr/amannirala13/HookStop"></a>
+<a href="https://github.com/amannirala13/HookStop/network/members"><img alt = "forks-badge" src="https://img.shields.io/github/forks/amannirala13/HookStop?color=blueviolet"></a>
+<a href="https://github.com/amannirala13/HookStop/stargazers"><img alt = "stars-badge" src="https://img.shields.io/github/stars/amannirala13/HookStop?color=yellow"></a>
+<a href="https://github.com/amannirala13/HookStop/watchers"><img alt="watcher-badge" src="https://img.shields.io/github/watchers/amannirala13/HookStop?color=teal"></a>
+<a href="https://github.com/amannirala13/HookStop/archive/master.zip"><img alt = "repo_size-badge" src="https://img.shields.io/github/repo-size/amannirala13/HookStop"></a>
 ---
 > I started this project to explore the capabilities of Jetpack Compose. If you are looking forward to learn Jetpack Compose, this project could be helpful and I have listed some of the reference I used to learn and build this project.
 ---
