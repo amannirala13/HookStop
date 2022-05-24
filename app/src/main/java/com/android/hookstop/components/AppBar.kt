@@ -29,16 +29,16 @@ fun AppBar(title:String, secondaryTitle: String?, actionComponent: @Composable (
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ){
-                Column{
+                Column( modifier = Modifier.weight(3f)){
                     Text(text = title,
-                        style = MaterialTheme.typography.headlineLarge,
+                        style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                         )
                     secondaryTitle?.let{
-                        Text(text = it)
+                        Text(text = it, style = MaterialTheme.typography.bodySmall,)
                     }
                 }
-                Box(modifier = Modifier.padding(16.dp)){
+                Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterEnd){
                     actionComponent()
                 }
 
@@ -49,7 +49,7 @@ fun AppBar(title:String, secondaryTitle: String?, actionComponent: @Composable (
 @Preview
 @Composable
 fun HeadingPrev(){
-    AppBar("Welcome Aman","Good morningfskldhjwohwr\neoiuhvsdfjkhgjkshveiuwoh"){
+    AppBar("Welcome Aman","Good morningfskldhjwoh wreoiuh vsdfjkhgjkshveiuwoh"){
         Buttons.SearchButton{}
     }
 }
