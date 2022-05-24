@@ -29,15 +29,18 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.android.hookstop.ui.theme.Blue
-import com.android.hookstop.ui.theme.BlueLight
+import com.android.hookstop.R
+import com.android.hookstop.ui.theme.*
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController?) {
-
     var startAnimation by remember { mutableStateOf(false) }
     var startCircleAnimation by remember { mutableStateOf(false)}
 
@@ -76,9 +79,13 @@ fun Splash(alpha: Float,
            cartAnimValue: Float,
            circleDistance: Float,
            circleAnimValue: Float){
+
+    val backgroundColor = MaterialTheme.colorScheme.background
+
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
+            .background(Yellow)
             .animateContentSize()
     ){
        
@@ -87,7 +94,7 @@ fun Splash(alpha: Float,
             val canvasHeight = size.height
 
             drawCircle(
-                color = BlueLight,
+                color = backgroundColor,
                 center = Offset(x = canvasWidth/circleAnimValue, y = canvasHeight/circleAnimValue ),
                 radius = size.maxDimension
             )
@@ -99,12 +106,12 @@ fun Splash(alpha: Float,
                 modifier = Modifier.graphicsLayer {
                     this.translationX = -cartAnimValue * cartDistance
                 },
-                imageVector = Icons.Outlined.ShoppingCart,
-                colorFilter = ColorFilter.tint(if(isSystemInDarkTheme()) BlueLight else Blue),
+                painter = painterResource(id = R.drawable.ic_hookah),
+                colorFilter = ColorFilter.tint(White),
                 contentDescription = "logo")
             Spacer(modifier = Modifier.width(8.dp))
             Text("HookStop",
-                color = if(isSystemInDarkTheme()) BlueLight else Blue,
+                color = White,
                 modifier = Modifier.alpha(alpha),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold)
