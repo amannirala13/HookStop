@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.android.hookstop.components.animation.ParallaxBox
 import com.android.hookstop.ui.theme.*
 
 class Buttons{
@@ -83,6 +84,32 @@ class Buttons{
                         imageVector = Icons.Rounded.KeyboardArrowRight,
                         colorFilter = ColorFilter.tint(White),
                         contentDescription = "login")
+                }
+            }
+        }
+
+        @Composable
+        fun RoundButton(modifier: Modifier = Modifier,
+                           backgroundColor: Color = White,
+                           icon: @Composable ()-> Unit,
+                           onClick: ()->Unit = {}){
+            Box(modifier = modifier
+                .shadow(elevation = 12.dp,
+                    shape = RoundedCornerShape(24.dp)
+                )
+            ){
+                Box(modifier = Modifier
+                    .background(
+                        shape = RoundedCornerShape(24.dp),
+                        color = backgroundColor
+                    )
+                    .clip(RoundedCornerShape(24.dp))
+                    .width(56.dp)
+                    .height(56.dp)
+                    .clickable(onClick = onClick),
+                    contentAlignment = Alignment.Center
+                ){
+                    icon()
                 }
             }
         }
