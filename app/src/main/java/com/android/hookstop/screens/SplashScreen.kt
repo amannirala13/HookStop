@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.hookstop.R
+import com.android.hookstop.components.animation.AnimatedLogo
 import com.android.hookstop.ui.theme.*
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -47,17 +48,6 @@ fun SplashScreen(navController: NavController?) {
     val circleAnim = animateFloatAsState(targetValue = if (startCircleAnimation) 2f else 0f,
         animationSpec = tween(durationMillis = Duration.SplashScreenCircleAnimationDuration.value.toInt())
     )
-
-    val cartAnim = animateFloatAsState(targetValue = if (startAnimation) 0f else 1f,
-        animationSpec = tween(durationMillis = Duration.SplashScreenCartAnimationDuration.value.toInt(), easing = LinearOutSlowInEasing)
-    )
-    val cartDistance = with(LocalDensity.current){20.dp.toPx()}
-    val circleDistance = with(LocalDensity.current){100.dp.toPx()}
-
-    val alphaAnim = animateFloatAsState(targetValue = if (startAnimation) 1f else 0f,
-        animationSpec = tween(durationMillis = Duration.SplashScreenAnimationDuration.value.toInt())
-        )
-
     LaunchedEffect(key1 = true) {
         startAnimation = true
         delay(Duration.SplashScreenCartAnimationDuration.value)
@@ -70,14 +60,11 @@ fun SplashScreen(navController: NavController?) {
         }
     }
 
-    Splash(alphaAnim.value, cartDistance, cartAnim.value, circleDistance, circleAnim.value)
+    Splash(startAnimation, circleAnim.value)
 }
 
 @Composable
-fun Splash(alpha: Float,
-           cartDistance: Float,
-           cartAnimValue: Float,
-           circleDistance: Float,
+fun Splash(startAnimation: Boolean,
            circleAnimValue: Float){
 
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -101,22 +88,7 @@ fun Splash(alpha: Float,
 
         }
         
-        Row(verticalAlignment = Alignment.CenterVertically){
-            Image(
-                modifier = Modifier.graphicsLayer {
-                    this.translationX = -cartAnimValue * cartDistance
-                },
-                painter = painterResource(id = R.drawable.ic_hookah),
-                colorFilter = ColorFilter.tint(White),
-                contentDescription = "logo")
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("HookStop",
-                color = White,
-                modifier = Modifier.alpha(alpha),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold)
-
-        }
+        AnimatedLogo(startAnimation = startAnimation, color = White)
     }
 }
 

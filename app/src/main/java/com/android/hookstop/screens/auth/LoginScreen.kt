@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +30,7 @@ import androidx.navigation.NavController
 import com.android.hookstop.R
 import com.android.hookstop.components.Buttons
 import com.android.hookstop.components.Inputs
+import com.android.hookstop.components.animation.ParallaxBox
 import com.android.hookstop.nav.Screen
 import com.android.hookstop.ui.theme.*
 import com.android.hookstop.values.Duration
@@ -38,11 +40,13 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(navController: NavController?){
     val context =  LocalContext.current as? Activity
-
     val coroutine = rememberCoroutineScope()
 
     var startAnim by remember {
         mutableStateOf(true)
+    }
+    var gyroAnimationEnabled by remember {
+        mutableStateOf(false)
     }
 
     val animTransitionDistance = with(LocalDensity.current){60.dp.toPx()}
@@ -58,6 +62,8 @@ fun LoginScreen(navController: NavController?){
 
         LaunchedEffect(key1 = true){
             startAnim = false
+            delay(Duration.LoginInAnimation.value)
+            gyroAnimationEnabled = true
         }
 
         Column(modifier = Modifier.fillMaxSize(),
@@ -69,12 +75,15 @@ fun LoginScreen(navController: NavController?){
                 Box(modifier = Modifier.graphicsLayer {
                     translationX = -animTransitionDistance * anim.value
                 }){
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_hookah),
-                        contentDescription = "logo",
-                        colorFilter = ColorFilter
-                            .tint(Yellow)
-                    )
+                    ParallaxBox(modifier = Modifier,
+                        body = {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_hookah),
+                                contentDescription = "logo",
+                                colorFilter = ColorFilter
+                                    .tint(Yellow)
+                            )
+                        })
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -123,22 +132,27 @@ fun LoginScreen(navController: NavController?){
                     )
                 }
                 Spacer(modifier = Modifier.height(48.dp))
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(32.dp),
-                    horizontalArrangement = Arrangement.End){
-                    Buttons.GoButton(modifier = Modifier.graphicsLayer {
-                        translationX = -animTransitionDistance * anim.value
-                    }){
-                        Toast.makeText(context, "Sending OTP", Toast.LENGTH_SHORT).show()
-                        coroutine.launch {
-                            startAnim = true
-                            delay(Duration.LoginOutAnimation.value)
-                            navController?.navigate(Screen.MainActivity.route)
-                        }
+                ParallaxBox(modifier = Modifier,
+                    startAnimation = gyroAnimationEnabled,
+                    body = {
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                            horizontalArrangement = Arrangement.End){
+                            Buttons.GoButton(modifier = Modifier.graphicsLayer {
+                                translationX = -animTransitionDistance * anim.value
+                            }){
+                                Toast.makeText(context, "Sending OTP", Toast.LENGTH_SHORT).show()
+                                coroutine.launch {
+                                    gyroAnimationEnabled = false
+                                    startAnim = true
+                                    delay(Duration.LoginOutAnimation.value)
+                                    navController?.navigate(Screen.MainActivity.route)
+                                }
 
-                    }
-                }
+                            }
+                        }
+                })
             }
 
         }
