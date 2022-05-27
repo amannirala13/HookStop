@@ -73,7 +73,7 @@ fun AnimatedRoundButton(modifier: Modifier = Modifier,
             .clickable(onClick = onClick),
             contentAlignment = Alignment.Center
         ){
-           ParallaxBox(body = {icon()})
+           ParallaxBox(travelFactorY = 0.5.dp , body = {icon()})
         }
     }
 }
@@ -99,7 +99,9 @@ fun AnimatedRoundTextButton(modifier: Modifier = Modifier,
             .clickable(onClick = onClick),
             contentAlignment = Alignment.Center
         ){
-            ParallaxBox(body = {
+            ParallaxBox(
+                travelFactorY = 0.5.dp,
+                body = {
                 Row(modifier = Modifier.padding(16.dp)){
                     Spacer(modifier = Modifier.width(16.dp))
                     icon()

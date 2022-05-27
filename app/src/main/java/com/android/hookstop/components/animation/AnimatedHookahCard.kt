@@ -14,6 +14,9 @@ import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -25,8 +28,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter.State.Empty.painter
+import coil.compose.rememberAsyncImagePainter
 import com.android.hookstop.R
 import com.android.hookstop.components.Buttons.Companion.RoundButton
+import com.android.hookstop.components.graphics.CoilImage
 import com.android.hookstop.data.Hookah
 import com.android.hookstop.ui.theme.Black
 import com.android.hookstop.ui.theme.BlackOverlay
@@ -46,27 +52,37 @@ fun AnimatedHookahCard(
 ){
     Box(modifier = modifier
         .fillMaxWidth()
-        .fillMaxSize(0.8f)
+        .fillMaxHeight(0.8f)
         .padding(padding)
-        .clickable { onClick() }
         .clip(shape = RoundedCornerShape(curveRadius)),
         contentAlignment = Alignment.Center
     ){
-        ParallaxBox(inverse = true, body = {
-            Image(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(0.8f)
-                    .clip(shape = RoundedCornerShape(curveRadius)),
-                painter = painterResource(id = R.drawable.img_hookah_1),
-                contentScale = ContentScale.Crop,
-                contentDescription = "logo")
+        ParallaxBox(
+            travelFactorY = 0.5.dp,
+            travelFactorX = 0.5.dp,
+            inverse = true, body = {
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(if(isSystemInDarkTheme()) Black else White)
+                .clip(shape = RoundedCornerShape(curveRadius))){
+                CoilImage(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .alpha(0.8f)
+                        .clip(shape = RoundedCornerShape(curveRadius)),
+                    data = R.drawable.img_hookah_1)
+            }
+            Box(modifier = Modifier
+                .background(BlackOverlay)
+                .clip(shape = RoundedCornerShape(curveRadius))
+                .fillMaxSize())
         })
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .background(BlackOverlay)
-            .fillMaxSize()){
-            ParallaxBox(body = {
+        ParallaxBox(
+            body={
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onClick() }
+                .fillMaxSize()){
                 Column(modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceBetween) {
                     Column(modifier = Modifier
@@ -148,8 +164,7 @@ fun AnimatedHookahCard(
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                 }
-            })
-
-        }
+            }
+        })
     }
 }
