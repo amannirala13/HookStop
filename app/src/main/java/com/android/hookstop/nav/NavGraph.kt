@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.android.hookstop.screens.MainActivity
+import com.android.hookstop.screens.MainScreen
 import com.android.hookstop.screens.auth.LoginScreen
 import com.android.hookstop.screens.SplashScreen
 
@@ -13,6 +13,6 @@ fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
         composable(route = Screen.SplashScreen.route){ SplashScreen(navController) }
         composable(route = Screen.LoginScreen.route){ LoginScreen(navController) }
-        composable(route = Screen.MainActivity.route){ MainActivity(navController) }
+        composable(route = Screen.MainActivity.route){ MainScreen(navController) }
     }
 }

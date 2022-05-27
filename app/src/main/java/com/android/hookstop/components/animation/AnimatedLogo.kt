@@ -44,7 +44,8 @@ fun AnimatedLogo(modifier: Modifier = Modifier,
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically){
         Image(
             modifier = Modifier.graphicsLayer {
-                this.translationX = -cartAnim.value * cartDistance
+                translationX = -cartAnim.value * cartDistance
+                alpha = 1f - cartAnim.value
             },
             painter = painterResource(id = R.drawable.ic_hookah),
             colorFilter = ColorFilter.tint(color),
